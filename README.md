@@ -4,4 +4,7 @@
 FraudLens AI is an AI-assisted fraud investigation platform that helps investigators analyze suspicious financial transactions.
 
 ## Setup
-(To be updated)
+
+```bash
+python scripts/generate_data.py
+```
