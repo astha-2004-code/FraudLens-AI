@@ -57,4 +57,15 @@ def challenge_assessment(id: int, db: Session = Depends(database.get_db), curren
         recommendation="Manual investigation"
     )
     
-    return response
+from .analytics.graph import build_transaction_graph
+
+@router.get("/{id}/graph")
+def get_investigation_graph(id: int, db: Session = Depends(database.get_db), current_user: models.User = Depends(auth.get_current_user)):
+    investigation = db.query(models.Investigation).filter(models.Investigation.id == id).first()
+    if not investigation:
+        raise HTTPException(status_code=404, detail="Investigation not found")
+        
+    transaction = investigation.transaction
+    graph_data = build_transaction_graph(transaction, db)
+    
+    return graph_data
