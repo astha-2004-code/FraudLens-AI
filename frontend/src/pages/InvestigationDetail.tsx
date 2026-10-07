@@ -57,7 +57,7 @@ const InvestigationDetail = () => {
         </header>
 
         <div className="flex space-x-1 mb-8 border-b border-slate-800">
-          {['overview', 'timeline', 'customer', 'evidence', 'graph', 'policies'].map(tab => (
+          {['overview', 'timeline', 'customer', 'evidence', 'graph', 'policies', 'chat'].map(tab => (
             <button 
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -67,6 +67,47 @@ const InvestigationDetail = () => {
             </button>
           ))}
         </div>
+
+        {activeTab === 'chat' && (
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl h-[600px] flex flex-col shadow-sm">
+            <div className="p-4 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
+              <h3 className="text-lg font-bold text-slate-100 flex items-center">
+                <ShieldAlert className="mr-2 text-blue-400" size={20} />
+                Investigator Copilot
+              </h3>
+            </div>
+            <div className="flex-1 p-6 overflow-y-auto space-y-4">
+              <div className="flex justify-start">
+                <div className="bg-slate-800 rounded-2xl rounded-tl-none p-4 max-w-[80%] shadow-sm">
+                  <p className="text-slate-200 text-sm">Hello. I am your FraudLens Copilot. I have analyzed the evidence for INV-1029. How can I help you investigate?</p>
+                </div>
+              </div>
+              <div className="flex justify-end">
+                <div className="bg-blue-600 rounded-2xl rounded-tr-none p-4 max-w-[80%] shadow-sm">
+                  <p className="text-white text-sm">Why was this flagged?</p>
+                </div>
+              </div>
+              <div className="flex justify-start">
+                <div className="bg-slate-800 rounded-2xl rounded-tl-none p-4 max-w-[80%] shadow-sm">
+                  <p className="text-slate-200 text-sm mb-2">The transaction was flagged primarily due to an unusual amount and a new device in a high-risk location.</p>
+                  <div className="bg-slate-900/50 p-2 rounded-lg border border-slate-700/50 mt-2">
+                    <span className="text-xs text-slate-400 uppercase tracking-wider font-semibold block mb-1">Sources</span>
+                    <span className="text-xs text-blue-400 block">- Transaction Analytics Service</span>
+                    <span className="text-xs text-blue-400 block">- Amount Anomaly Module</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="p-4 border-t border-slate-800 bg-slate-900/50">
+              <div className="flex space-x-3">
+                <input type="text" placeholder="Ask about this case..." className="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500 text-slate-200 transition-colors" />
+                <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-medium shadow-sm transition-colors">
+                  Send
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {activeTab === 'overview' && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
