@@ -15,10 +15,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-from app.routers import auth
+from app.routers import auth, customers
 
 @app.get("/health")
 def health_check():
     return {"status": "ok", "service": "FraudLens AI Backend"}
 
 app.include_router(auth.router)
+app.include_router(customers.router)
