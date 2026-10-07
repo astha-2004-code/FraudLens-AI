@@ -1,17 +1,19 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Sidebar from './components/Sidebar';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
-    <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4">
-      <div className="text-center">
-        <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400 mb-6 tracking-tight">
-          FraudLens AI
-        </h1>
-        <p className="text-xl text-slate-400 max-w-2xl mx-auto font-light">
-          Evidence-Driven Fraud Investigation Copilot
-        </p>
+    <Router>
+      <div className="flex h-screen bg-slate-950 font-sans">
+        <Sidebar />
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          {/* We will add other routes here in subsequent commits */}
+        </Routes>
       </div>
-    </div>
+    </Router>
   );
 }
 
